@@ -1,4 +1,3 @@
-counter = 1
 while True:
     try:
         user_choice = input("do you want to add a new To-Do item? answer by 'y' for yes and 'n' for no: ")
@@ -8,8 +7,7 @@ while True:
         if user_choice.lower() == 'y':
             user_to_do_list = input("Please enter your To-Do list: ")
             file = open("to_do.txt", "+a", encoding="utf-8")
-            file.write(f"{counter}) {user_to_do_list} \n")
-            counter += 1
+            file.write(f"{user_to_do_list} \n")
             file.close()
         elif user_choice.lower() == 'n':
             user_to_do_list_show = input("do you want to list your To-Do items ? answer 'y' for yes and 'n' for no: ")
