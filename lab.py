@@ -7,9 +7,10 @@ while True:
  if user_input == 'y' or user_input == 'Y':
      while True:
            user_todo_input = input("okay, Enter your ToDo item and type finish to stop: ")
-           file.write(user_todo_input + "\n")
            if user_todo_input == 'finish' or user_todo_input == "Finish" or user_todo_input == "FINISH":
                break
+           file.write(user_todo_input + "\n")
+
     
  elif user_input == 'n' or user_input == 'N':
      user_answer = input("Alright, would you want to list your To-Do items? ")
