@@ -1,0 +1,4 @@
+go to gym
+go to study
+go to sleep
+go to home
