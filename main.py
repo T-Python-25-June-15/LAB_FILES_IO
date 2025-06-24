@@ -1,5 +1,3 @@
-
-
 # To-Do List app
 while True:
     user_input = input('do you want to add a new To-Do item? (y, n, exit): ')
