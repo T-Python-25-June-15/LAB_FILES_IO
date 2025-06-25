@@ -26,7 +26,6 @@ def writejson(path,data):
 def main():
     while True:
         try:
-
             print("""
                     1- Add To-Do Task
                     2- Show To-Do Tasks
@@ -73,33 +72,6 @@ def main():
                     print("\nthank you for using the To-Do program, come back again soon\n")
                     break
 
-            # if question == 'exit':
-            #     print("\nthank you for using the To-Do program, come back again soon\n")
-            #     break
-
-            # if question == 'y' or question == 'yes':
-            #     title = input("To-Do Title: ")
-            #     dateInput = date
-            #     dataToSave = {title: {'date': dateInput,'done':False}}
-            #     writejson(filepath,dataToSave)
-
-            # elif question == 'n' or question == 'no':
-            #     question2 = input("\ndo you want to list your To-Do items (y:yes and n:no) ? ")
-            #     if question2 == 'exit':
-            #         print("\nthank you for using the To-Do program, come back again soon\n")
-            #         break
-
-            #     if question2 == 'y' or question2 == 'yes':
-            #         data = readjson(filepath)
-            #         for todoIndex,todo in enumerate(data):
-
-            #             if data[todo]['done'] == True:
-            #                 status = "Done"
-            #             else:
-            #                 status = "Not Done"
-            #             print(f"{todoIndex+1}- {todo} - {data[todo]['date']} - {status}")
-            # else:
-            #     print("wrong option")
         except Exception as ex:
             print(ex)
 main()
