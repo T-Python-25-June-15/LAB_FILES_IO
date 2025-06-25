@@ -1,4 +1,9 @@
-import json
+import          json
+from            datetime        import      datetime
+
+
+datetimevalue = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
 
 filepath = 'data.json'
 
@@ -20,34 +25,81 @@ def writejson(path,data):
 
 def main():
     while True:
-        question = input("\ndo you want to add a new To-Do item (y:yes and n:no) ?: ")
-        if question == 'exit':
-            print("\nthank you for using the To-Do program, come back again soon\n")
-            break
+        try:
 
-        if question == 'y' or question == 'yes':
-            title = input("To-Do Title: ")
-            date = input("To-Do Date example(mm/dd/yy): ")
-            time = input("To-Do Time example(00:00 AM): ")
-            data = {title: {'date': date,'time':time,'done':False}}
-            writejson(filepath,data)
+            print("""
+                    1- Add To-Do Task
+                    2- Show To-Do Tasks
+                    3- Edit To-Do Task
+                    4- Exit
+                """)
 
-        elif question == 'n' or question == 'no':
-            question2 = input("\ndo you want to list your To-Do items (y:yes and n:no) ? ")
-            if question2 == 'exit':
-                print("\nthank you for using the To-Do program, come back again soon\n")
-                break
+            question = int(input("\nSelect your to-do option: "))
 
-            if question2 == 'y' or question2 == 'yes':
-                data = readjson(filepath)
-                for todo in data:
+            match question:
+                case 1:
+                    title = input("To-Do Title: ")
+                    dataToSave = {title: {'date': datetimevalue,'done':False}}
+                    writejson(filepath,dataToSave)
 
-                    if data[todo]['done'] == True:
-                        status = "You did it"
-                    else:
-                        status = "Not yet"
-                    print(f"\n{todo} - {data[todo]['date']} {data[todo]['time']} - {status}\n")
-        else:
-            print("wrong option")
+                case 2:
+                    data = readjson(filepath)
+                    for todoIndex,todo in enumerate(data):
 
+                        if data[todo]['done'] == True:
+                            status = "Done"
+                        else:
+                            status = "Not Done"
+
+                        print(f"{todoIndex+1}- {todo} - {data[todo]['date']} - {status}")
+
+                case 3:
+                    markItDone = int(input("Select your to-do task to mark it done: "))
+                    data = readjson(filepath)
+
+                    for todoIndex,todo in enumerate(data):
+
+                        if (todoIndex +1) == markItDone:           
+                            if data[todo]['done'] == True:
+                                print("This task already done! ")
+                            elif data[todo]['done'] == False:
+                                data[todo]['done'] = True  
+                                writejson(filepath, data)
+                                print(f"Marked to-do Number {markItDone} as done.")
+                            else:
+                                print("Something went wrong!")
+
+                case 4:
+                    print("\nthank you for using the To-Do program, come back again soon\n")
+                    break
+
+            # if question == 'exit':
+            #     print("\nthank you for using the To-Do program, come back again soon\n")
+            #     break
+
+            # if question == 'y' or question == 'yes':
+            #     title = input("To-Do Title: ")
+            #     dateInput = date
+            #     dataToSave = {title: {'date': dateInput,'done':False}}
+            #     writejson(filepath,dataToSave)
+
+            # elif question == 'n' or question == 'no':
+            #     question2 = input("\ndo you want to list your To-Do items (y:yes and n:no) ? ")
+            #     if question2 == 'exit':
+            #         print("\nthank you for using the To-Do program, come back again soon\n")
+            #         break
+
+            #     if question2 == 'y' or question2 == 'yes':
+            #         data = readjson(filepath)
+            #         for todoIndex,todo in enumerate(data):
+
+            #             if data[todo]['done'] == True:
+            #                 status = "Done"
+            #             else:
+            #                 status = "Not Done"
+            #             print(f"{todoIndex+1}- {todo} - {data[todo]['date']} - {status}")
+            # else:
+            #     print("wrong option")
+        except Exception as ex:
+            print(ex)
 main()
